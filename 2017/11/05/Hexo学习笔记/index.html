@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="yanm1ng&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Hexo学习笔记 | FlyingFire
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>FlyingFire</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Hexo学习笔记</h2>
+  <p class="post-date">2017-11-05</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="Hexo学习笔记"><a href="#Hexo学习笔记" class="headerlink" title="Hexo学习笔记"></a>Hexo学习笔记</h1><blockquote>
+<p>Hexo是一个快速简洁的博客框架，使用Markdown解析文章，将内容生成静态网页，配合主题可以制作成精美的网页，将网页部署到github之后，你就有了一个免费的博客</p>
+</blockquote>
+<p>个人感觉，面向开发者而言，博客应该是记录自己点滴积累的地方，它应该足够简洁，不应该有广告等元素干扰阅读，它应该是开发友好的，对程序员而言保持双手在键盘上，给我们顺滑流畅的书写过程，最后它应该足够强大，能让我们充分折腾，如何你也有这样的想法，那么<code>Hexo</code>是一个十分不错的选择。</p>
+<p>本文档将按照官方文档的结构顺序从头到尾从网站初始化到部署到github完整的一个流程进行详细的说明。</p>
+<h1 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># step1、安装Node.js</span></div><div class="line">curl https://raw.github.com/creationix/nvm/master/install.sh | sh</div><div class="line"><span class="comment"># 安装完成后，重启终端并执行下列命令即可安装 Node.js</span></div><div class="line">nvm install stable</div><div class="line"></div><div class="line"><span class="comment"># step2、安装github</span></div><div class="line">sudo apt-get install git</div><div class="line"></div><div class="line"><span class="comment"># step3、安装hexo</span></div><div class="line">npm install -g hexo-cli</div></pre></td></tr></table></figure>
+<h1 id="二、建站"><a href="#二、建站" class="headerlink" title="二、建站"></a>二、建站</h1><p>初始化一个空站：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo init &lt;folder&gt;</div><div class="line"><span class="built_in">cd</span> &lt;folder&gt;</div><div class="line">npm install</div></pre></td></tr></table></figure>
+<p>初始化后的目录结构如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── _config.yml    <span class="comment"># 网站配置信息</span></div><div class="line">├── package.json	<span class="comment"># 应用配置信息</span></div><div class="line">├── scaffolds		<span class="comment"># 模板文件夹</span></div><div class="line">├── <span class="built_in">source</span>			<span class="comment"># 资源文件夹</span></div><div class="line">|   ├── _drafts	<span class="comment"># 未发布的草稿内容</span></div><div class="line">|   └── _posts	<span class="comment"># 已发布的博客文章</span></div><div class="line">└── themes	<span class="comment"># 网站主题文件夹</span></div></pre></td></tr></table></figure>
+<h2 id="2-1、常用命令"><a href="#2-1、常用命令" class="headerlink" title="2.1、常用命令"></a>2.1、常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 新建一个网站</span></div><div class="line">hexo init [folder]</div><div class="line"></div><div class="line"><span class="comment"># 新建一篇文章，如果不设置layout样式文件，则使用默认的配置，标题推荐用引号包起来(避免空格的问题)</span></div><div class="line">hexo new [layout] &lt;title&gt;</div><div class="line"></div><div class="line"><span class="comment"># 生成静态文件，可选参数：</span></div><div class="line"><span class="comment"># -d，--deploy	生成后部署网站</span></div><div class="line"><span class="comment"># -w，--watch	监视文件变动</span></div><div class="line">hexo generate</div><div class="line"></div><div class="line"><span class="comment"># 发布文章</span></div><div class="line">hexo publish [layout] &lt;filename&gt;</div><div class="line"></div><div class="line"><span class="comment"># 启动本地服务器，默认http://localhost:4000,参数：</span></div><div class="line"><span class="comment"># -p, --port	重设端口</span></div><div class="line"><span class="comment"># -s, --static	只使用静态文件</span></div><div class="line"><span class="comment"># -l, --log		启动日志</span></div><div class="line">hexo server</div><div class="line"></div><div class="line"><span class="comment"># 部署网站，可选参数：</span></div><div class="line"><span class="comment"># -g,--generate	部署之前预先生成静态文件</span></div><div class="line">hexo deploy</div><div class="line"></div><div class="line"><span class="comment"># 渲染文件，可选参数</span></div><div class="line"><span class="comment"># -o,--output	设置输出路径</span></div><div class="line">hexo render &lt;file1&gt; [file2] ...</div><div class="line"></div><div class="line"><span class="comment"># 清理缓存文件和已经生成的静态文件</span></div><div class="line">hexo clean</div><div class="line"></div><div class="line">hexo migrate &lt;<span class="built_in">type</span>&gt;	<span class="comment"># 迁移其他网站内容</span></div><div class="line">hexo list &lt;<span class="built_in">type</span>&gt;	<span class="comment"># 列出网站资料</span></div><div class="line">hexo version	<span class="comment"># 查看版本</span></div><div class="line">hexo --safe		<span class="comment"># 安全模式</span></div><div class="line">hexo --debug	<span class="comment"># 调试模式</span></div><div class="line">hexo --silent	<span class="comment"># 简洁模式</span></div><div class="line">hexo --config custom.yml	<span class="comment"># 自定义配置文件路径</span></div><div class="line">hexo --draft	<span class="comment"># 显示草稿</span></div><div class="line">hexo --cwd /path/to/cwd	<span class="comment"># 自定义当前工作目录</span></div></pre></td></tr></table></figure>
+<p>最后几个命令不常用，需要的时候可以参考<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">官方文档</a>。</p>
+<h2 id="2-2、config-yml文件说明"><a href="#2-2、config-yml文件说明" class="headerlink" title="2.2、config.yml文件说明"></a>2.2、config.yml文件说明</h2><p>该文件主要用来配置网站本身的信息，如域名、名称、描述等，网站初始化后会默认新建本文件，配置项目包括：网站(site)、网址(URL)、目录(Directory)、文章(Writing)、主页信息(Home page setting)、分类标签(Category &amp; Tag)、分页(Pagination)、扩展(Extensions)、部署(Deployment)。下面对这些内容结合自己的实例进行逐项说明，详细的说明可以从<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">官方文档</a>中查询。</p>
+<p>#### </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Hexo Configuration</span></div><div class="line"><span class="comment">## Docs: https://hexo.io/docs/configuration.html</span></div><div class="line"><span class="comment">## Source: https://github.com/hexojs/hexo/</span></div><div class="line"></div><div class="line"><span class="comment"># 网站Site</span></div><div class="line">title: FlyingFire		<span class="comment"># 网站标题</span></div><div class="line">subtitle: a step further every day		<span class="comment"># 网站副标题</span></div><div class="line">description:			<span class="comment"># 网站描述，这边可以好好写以方便搜索引擎SEO</span></div><div class="line">author: FlyingFire		<span class="comment"># 作者</span></div><div class="line">language:				<span class="comment"># 网站使用的语言</span></div><div class="line">timezone:				<span class="comment"># 时区，默认为当前电脑的时区</span></div><div class="line"></div><div class="line"><span class="comment"># 网址URL</span></div><div class="line"><span class="comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></div><div class="line">url: http://yoursite.com	<span class="comment"># 网址</span></div><div class="line">root: /						<span class="comment"># 网站根目录</span></div><div class="line">permalink: :year/:month/:day/:title/	<span class="comment"># 文章永久链接格式</span></div><div class="line">permalink_defaults:			<span class="comment"># 永久链接中各部分的默认值</span></div><div class="line"></div><div class="line"><span class="comment"># 目录Directory</span></div><div class="line">source_dir: <span class="built_in">source</span>			<span class="comment"># 资源文件夹</span></div><div class="line">public_dir: public			<span class="comment"># 公共文件夹，用于存放生成站点的文件</span></div><div class="line">tag_dir: tags				<span class="comment"># 标签文件夹</span></div><div class="line">archive_dir: archives		<span class="comment"># 归档文件夹</span></div><div class="line">category_dir: categories	<span class="comment"># 分类文件夹</span></div><div class="line">code_dir: downloads/code	<span class="comment"># 包含代码片段的文件夹</span></div><div class="line">i18n_dir: :lang				<span class="comment"># 国际化文件夹</span></div><div class="line">skip_render:				<span class="comment"># 指定跳过文件的渲染</span></div><div class="line"></div><div class="line"><span class="comment"># 文章Writing</span></div><div class="line">new_post_name: :title.md	<span class="comment"># 新文章名称</span></div><div class="line">default_layout: post		<span class="comment"># 预设布局</span></div><div class="line">titlecase: <span class="literal">false</span> 			<span class="comment"># 将标题转换为Title Case格式(即英文单词第一个字母大写)</span></div><div class="line">external_link: <span class="literal">true</span>			<span class="comment"># 在新链接中打开文件</span></div><div class="line">filename_case: 0			<span class="comment"># 讲文件名称转换为 (1) 小写或 (2) 大写</span></div><div class="line">render_drafts: <span class="literal">false</span>		<span class="comment"># 显示草稿</span></div><div class="line">post_asset_folder: <span class="literal">false</span>	<span class="comment"># 启动 Asset 文件夹</span></div><div class="line">relative_link: <span class="literal">false</span>		<span class="comment"># 把链接改为与根目录的相对位址</span></div><div class="line">future: <span class="literal">true</span>				<span class="comment"># 显示未来的文章</span></div><div class="line">highlight:					<span class="comment"># 代码块的设置</span></div><div class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></div><div class="line">  line_number: <span class="literal">true</span></div><div class="line">  auto_detect: <span class="literal">false</span></div><div class="line">  tab_replace:</div><div class="line">  </div><div class="line"><span class="comment"># 主页设置Home page setting</span></div><div class="line"><span class="comment"># path: Root path for your blogs index page. (default = '')</span></div><div class="line"><span class="comment"># per_page: Posts displayed per page. (0 = disable pagination)</span></div><div class="line"><span class="comment"># order_by: Posts order. (Order by date descending by default)</span></div><div class="line">index_generator:</div><div class="line">  path: <span class="string">''</span></div><div class="line">  per_page: 10		<span class="comment"># 每页文章的数目 </span></div><div class="line">  order_by: -date	<span class="comment"># 文章排序顺序</span></div><div class="line">  </div><div class="line"><span class="comment"># 分类标签Category &amp; Tag</span></div><div class="line">default_category: uncategorized	<span class="comment"># 默认分类</span></div><div class="line">category_map:					<span class="comment"># 分类别名</span></div><div class="line">tag_map:						<span class="comment"># 标签别名</span></div><div class="line"></div><div class="line"><span class="comment"># 时间格式Date / Time format</span></div><div class="line"><span class="comment">## Hexo uses Moment.js to parse and display date</span></div><div class="line"><span class="comment">## You can customize the date format as defined in</span></div><div class="line"><span class="comment">## http://momentjs.com/docs/#/displaying/format/</span></div><div class="line">date_format: YYYY-MM-DD		<span class="comment"># 日期格式</span></div><div class="line">time_format: HH:mm:ss		<span class="comment"># 时间格式</span></div><div class="line"></div><div class="line"><span class="comment"># 分页Pagination</span></div><div class="line"><span class="comment">## Set per_page to 0 to disable pagination</span></div><div class="line">per_page: 10			<span class="comment"># 每页显示的文章量 (0 = 关闭分页功能)</span></div><div class="line">pagination_dir: page	<span class="comment"># 分页目录</span></div><div class="line"></div><div class="line"><span class="comment"># 扩展Extensions</span></div><div class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></div><div class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></div><div class="line">theme: vexo		<span class="comment"># 当前主题名称。值为false时禁用主题</span></div><div class="line"></div><div class="line"><span class="comment"># 部署Deployment</span></div><div class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></div><div class="line">deploy:</div><div class="line">  <span class="built_in">type</span>: git		<span class="comment"># 部署方式</span></div><div class="line">  repo: https://github.com/henan715/henan715.github.io.git  <span class="comment"># git地址</span></div></pre></td></tr></table></figure>
+<h1 id="三、写博客"><a href="#三、写博客" class="headerlink" title="三、写博客"></a>三、写博客</h1><p>写博客有两种方法，一种是官方手册中说明的：在命令行切换到网站根目录下，执行<code>hexo new ***</code>，另一种是直接用第三方<code>Markdown</code>工具编写文档，然后拷贝到网站目录下<code>/source/_posts/</code>中，个人认为后者更容易，可以结合<code>Typora</code>软件，写起来更舒服。</p>
+<p>这里注意，如果使用第二种方法，要在文件的头部插入一些信息，因为hexo生成的是静态的网页，需要根据文件头部的内容进行分类、显示标题等，默认情况下，格式应该如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: Hexo学习笔记</div><div class="line">date: 2017-11-05 16:42:30</div><div class="line">tags:</div><div class="line">---</div><div class="line"></div><div class="line">正文内容</div></pre></td></tr></table></figure>
+<p>要是嫌插入麻烦，就用hexo生成文档然后用第三方编辑器打开编辑吧。</p>
+</section>
+    <!-- Tags START -->
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Hexo学习笔记"><span class="toc-nav-text">Hexo学习笔记</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#一、安装"><span class="toc-nav-text">一、安装</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#二、建站"><span class="toc-nav-text">二、建站</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2-1、常用命令"><span class="toc-nav-text">2.1、常用命令</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2-2、config-yml文件说明"><span class="toc-nav-text">2.2、config.yml文件说明</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#三、写博客"><span class="toc-nav-text">三、写博客</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2017/11/05/Hexo学习笔记/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "yanm1ng";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "Hexo学习笔记",
+        owner: "yanm1ng",
+        repo: "yanm1ng.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
