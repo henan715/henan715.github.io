@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="FlyingFire" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Python类的一些说明[TOC]">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python中property、yield等一些类说明">
+<meta property="og:url" content="http://yoursite.com/2018/06/30/python中property、yield等一些类说明/index.html">
+<meta property="og:site_name" content="FlyingFire">
+<meta property="og:description" content="Python类的一些说明[TOC]">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-30T06:03:11.429Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python中property、yield等一些类说明">
+<meta name="twitter:description" content="Python类的一些说明[TOC]">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/30/python中property、yield等一些类说明/"/>
+
+
+
+
+
+  <title>python中property、yield等一些类说明 | FlyingFire</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FlyingFire</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">数据挖掘、数据分析、数据运营混合体，魔都Fintech行业搬砖工</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/30/python中property、yield等一些类说明/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyingFire">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyingFire">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python中property、yield等一些类说明</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-30T14:02:18+08:00">
+                2018-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Python类的一些说明"><a href="#Python类的一些说明" class="headerlink" title="Python类的一些说明"></a>Python类的一些说明</h1><p>[TOC]</p>
+<a id="more"></a>
+<h2 id="property"><a href="#property" class="headerlink" title="property"></a>property</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;将方法当成类的一种属性来使用，注意要显示声明类继承object：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">myClass</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">	@property</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">myFunction</span><span class="params">()</span>:</span></div><div class="line">		<span class="keyword">print</span> <span class="string">'my function'</span></div></pre></td></tr></table></figure></p>
+<h2 id="yield"><a href="#yield" class="headerlink" title="yield"></a>yield</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;介绍yield前有必要先说明下Python中的迭代器(iterator)和生成器(constructor)。<br>&nbsp;<br>一、迭代器(iterator)<br>&nbsp;&nbsp;&nbsp;&nbsp;在Python中，for循环可以用于Python中的任何类型，包括列表、元祖等等，实际上，for循环可用于任何“可迭代对象”，这其实就是迭代器<br>&nbsp;&nbsp;&nbsp;&nbsp;迭代器是一个实现了迭代器协议的对象，Python中的迭代器协议就是有next方法的对象会前进到下一结果，而在一系列结果的末尾是，则会引发StopIteration。任何这类的对象在Python中都可以用for循环或其他遍历工具迭代，迭代工具内部会在每次迭代时调用next方法，并且捕捉StopIteration异常来确定何时离开。<br>&nbsp;&nbsp;&nbsp;&nbsp;使用迭代器一个显而易见的<strong>好处</strong>就是：每次只从对象中读取一条数据，不会造成内存的过大开销。<br>&nbsp;&nbsp;&nbsp;&nbsp;比如要逐行读取一个文件的内容，利用readlines()方法，我们可以这么写：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> line <span class="keyword">in</span> open(<span class="string">"test.txt"</span>).readlines():</div><div class="line">    <span class="keyword">print</span> line</div></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;这样虽然可以工作，但不是最好的方法。因为他实际上是把文件一次加载到内存中，然后逐行打印。当文件很大时，这个方法的内存开销就很大了。<br>&nbsp;&nbsp;&nbsp;&nbsp;利用file的迭代器，我们可以这样写：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> line <span class="keyword">in</span> open(<span class="string">"test.txt"</span>):   <span class="comment">#use file iterators</span></div><div class="line">    <span class="keyword">print</span> line</div></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;这是最简单也是运行速度最快的写法，他并没显式的读取文件，而是利用迭代器每次读取下一行。<br>&nbsp;&nbsp;&nbsp;&nbsp;<br>二、生成器(constructor)<br>&nbsp;&nbsp;&nbsp;&nbsp;生成器函数在Python中与迭代器协议的概念联系在一起。简而言之，包含yield语句的函数会被特地编译成生成器。当函数被调用时，他们返回一个生成器对象，这个对象支持迭代器接口。函数也许会有个return语句，但它的作用是用来yield产生值的。<br>&nbsp;&nbsp;&nbsp;&nbsp;不像一般的函数会生成值后退出，生成器函数在生成值后会自动挂起并暂停他们的执行和状态，他的本地变量将保存状态信息，这些信息在函数恢复时将再度有效<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">g</span><span class="params">(n)</span>:</span></div><div class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">		<span class="keyword">yield</span> i **<span class="number">2</span></div></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;调用时：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; t = g(5)</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; t.next()</span></div><div class="line">0</div><div class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; t.next()</span></div><div class="line">1</div><div class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; t.next()</span></div><div class="line">4</div><div class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; t.next()</span></div><div class="line">9</div><div class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; t.next()</span></div><div class="line">16</div><div class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; t.next()</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File "&lt;stdin&gt;", line 1, in &lt;module&gt;</div><div class="line">StopIteration</div></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;在运行完5次next之后，生成器抛出了一个StopIteration异常，迭代终止。</p>
+<h2 id="range与xrange"><a href="#range与xrange" class="headerlink" title="range与xrange"></a>range与xrange</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;如下代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1000</span>):<span class="keyword">pass</span>	</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1000</span>):<span class="keyword">pass</span></div></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;range会生成一个1000个元素的list，占用内存大，而xrange在每次迭代中返回下一个数值，占用内存小</p>
+<h2 id="str函数和repr函数"><a href="#str函数和repr函数" class="headerlink" title="str函数和repr函数"></a>str函数和repr函数</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;内建函数<code>str()</code>和<code>repr()</code> (representation，表达，表示)或反引号操作符(``)可以方便地以字符串的方式获取对象的内容、类型、数值属性等信息。<code>str()</code>函数得到的字符串可读性好（故被<code>print</code>调用），而<code>repr()</code>函数得到的字符串通常可以用来重新获得该对象，通常情况下 <code>obj==eval(repr(obj))</code> 这个等式是成立的。这两个函数接受一个对象作为其参数，返回适当的字符串。<br>&nbsp;&nbsp;&nbsp;&nbsp;事实上repr()和``做一样的事情，返回一个对象的“官方”字符串表示。其结果绝大多数情况下（不是所有）可以通过求值运算（内建函数<code>eval()</code>）重新得到该对象。<br>&nbsp;&nbsp;&nbsp;&nbsp;str()则不同，它生成一个对象的可读性好的字符串表示，结果通常无法用eval()`求值，但适合print输出。</p>
+<h2 id="is和id"><a href="#is和id" class="headerlink" title="is和id"></a>is和id</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;id函数可以获得对象的内存地址，如果两个对象的内存地址是一样的，那么这两个对象肯定是一个对象。和is是等价的。但是id和is本质上是两个不同的概念，详细：<a href="http://blog.jobbole.com/49705/" target="_blank" rel="external">参考链接</a>。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/30/python-configparser库学习笔记/" rel="next" title="python-configparser库学习笔记">
+                <i class="fa fa-chevron-left"></i> python-configparser库学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/30/归一化、标准化、正则化的概念、关联及差异/" rel="prev" title="归一化、标准化、正则化的概念、关联及差异">
+                归一化、标准化、正则化的概念、关联及差异 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="FlyingFire" />
+            
+              <p class="site-author-name" itemprop="name">FlyingFire</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yourname@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python类的一些说明"><span class="nav-number">1.</span> <span class="nav-text">Python类的一些说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#property"><span class="nav-number">1.1.</span> <span class="nav-text">property</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yield"><span class="nav-number">1.2.</span> <span class="nav-text">yield</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#range与xrange"><span class="nav-number">1.3.</span> <span class="nav-text">range与xrange</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#str函数和repr函数"><span class="nav-number">1.4.</span> <span class="nav-text">str函数和repr函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#is和id"><span class="nav-number">1.5.</span> <span class="nav-text">is和id</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FlyingFire</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

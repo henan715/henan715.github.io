@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="FlyingFire" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="一、简介先引用一个官网的介绍：  Superset曾用名Caravel, Panoramix, 是由Airbnb（知名在线房屋短租公司）开源的数据分析与可视化平台, 该工具主要特点是可自助分析, 自定义仪表盘, 分析结果可视化（导出）, 用户/角色权限控制, 还集成了一个SQL编辑器, 可以进行SQL编辑查询等。  Superset的后端完全基于Python，使用到了Flask、Pandas、Sq">
+<meta property="og:type" content="article">
+<meta property="og:title" content="superset-开源的BI及数据可视化工具开坑记">
+<meta property="og:url" content="http://yoursite.com/2018/06/02/superset-开源的BI及数据可视化工具开坑记/index.html">
+<meta property="og:site_name" content="FlyingFire">
+<meta property="og:description" content="一、简介先引用一个官网的介绍：  Superset曾用名Caravel, Panoramix, 是由Airbnb（知名在线房屋短租公司）开源的数据分析与可视化平台, 该工具主要特点是可自助分析, 自定义仪表盘, 分析结果可视化（导出）, 用户/角色权限控制, 还集成了一个SQL编辑器, 可以进行SQL编辑查询等。  Superset的后端完全基于Python，使用到了Flask、Pandas、Sq">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/apache/incubator-superset/master/superset/assets/images/screenshots/bank_dash.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/apache/incubator-superset/master/superset/assets/images/screenshots/explore.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/apache/incubator-superset/master/superset/assets/images/screenshots/sqllab.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/apache/incubator-superset/master/superset/assets/images/screenshots/visualizations.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/02/superset-开源的BI及数据可视化工具开坑记/superset-开源的BI及数据可视化工具开坑记/20180603091112.png">
+<meta property="og:image" content="http://yoursite.com/home/henan/hexoMy/henan715.github.io/source/_posts/superset-开源的BI及数据可视化工具开坑记/20180603110622.png">
+<meta property="og:updated_time" content="2018-06-03T04:25:43.268Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="superset-开源的BI及数据可视化工具开坑记">
+<meta name="twitter:description" content="一、简介先引用一个官网的介绍：  Superset曾用名Caravel, Panoramix, 是由Airbnb（知名在线房屋短租公司）开源的数据分析与可视化平台, 该工具主要特点是可自助分析, 自定义仪表盘, 分析结果可视化（导出）, 用户/角色权限控制, 还集成了一个SQL编辑器, 可以进行SQL编辑查询等。  Superset的后端完全基于Python，使用到了Flask、Pandas、Sq">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/apache/incubator-superset/master/superset/assets/images/screenshots/bank_dash.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/02/superset-开源的BI及数据可视化工具开坑记/"/>
+
+
+
+
+
+  <title>superset-开源的BI及数据可视化工具开坑记 | FlyingFire</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FlyingFire</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">数据挖掘、数据分析、数据运营混合体，魔都Fintech行业搬砖工</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/02/superset-开源的BI及数据可视化工具开坑记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyingFire">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyingFire">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">superset-开源的BI及数据可视化工具开坑记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-02T12:38:47+08:00">
+                2018-06-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>先引用一个官网的介绍：</p>
+<blockquote>
+<p><code>Superset</code>曾用名Caravel, Panoramix, 是由Airbnb（知名在线房屋短租公司）开源的数据分析与可视化平台, 该工具主要特点是可自助分析, 自定义仪表盘, 分析结果可视化（导出）, 用户/角色权限控制, 还集成了一个SQL编辑器, 可以进行SQL编辑查询等。</p>
+</blockquote>
+<p><code>Superset</code>的后端完全基于<code>Python</code>，使用到了<code>Flask</code>、<code>Pandas</code>、<code>SqlAlchemy</code>等库，前端则使用了<code>react</code>、<code>webpack</code>，保证了界面显示流畅顺滑。</p>
+<p><img src="https://raw.githubusercontent.com/apache/incubator-superset/master/superset/assets/images/screenshots/bank_dash.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/apache/incubator-superset/master/superset/assets/images/screenshots/explore.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/apache/incubator-superset/master/superset/assets/images/screenshots/sqllab.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/apache/incubator-superset/master/superset/assets/images/screenshots/visualizations.png" alt="img"></p>
+<p>功能特性上直接翻译<a href="https://github.com/apache/incubator-superset" target="_blank" rel="external">官网</a>内容：</p>
+<ul>
+<li>交互式的数据分析及可视化工具，可以创建带交互的展示大屏；</li>
+<li>提供大量的可视化图表；</li>
+<li>提供对数据的下钻(drill down)、切分(slice)、切块(dice)；</li>
+<li>提供sql查询界面，查询的结果可以直接进行可视化展示；</li>
+<li>提供权限机制，保证数据可以根据权限隔离；</li>
+<li>提供一个轻量的语义层( lightweight semantic layer)，用于控制数据展现的维度和度量；</li>
+<li>对大多数sql类型数据库支持开箱即用；</li>
+<li>支持Druid数据库；</li>
+<li>支持缓存以更快的渲染图表。</li>
+</ul>
+<p>目前支持的数据库有：</p>
+<ul>
+<li>MySQL</li>
+<li>Postgres</li>
+<li>Vertica</li>
+<li>Oracle</li>
+<li>Microsoft SQL Server</li>
+<li>SQLite</li>
+<li>Greenplum</li>
+<li>Firebird</li>
+<li>MariaDB</li>
+<li>Sybase</li>
+<li>IBM DB2</li>
+<li>Exasol</li>
+<li>MonetDB</li>
+<li>Snowflake</li>
+<li>Redshift</li>
+<li>Druid</li>
+</ul>
+<p>大致看了一下，图表应该是基于<code>D3.js</code>的，样式有点冷淡风格，先折腾着学习学习。</p>
+<h2 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h2><p>官方的<a href="https://superset.incubator.apache.org/installation.html" target="_blank" rel="external">安装文档</a>提供了docker方式部署和直接部署两种方式，这边我选择直接部署。</p>
+<p>官方安装文档中说明支持<code>Python 2.7</code>和<code>Python 3.4</code>，安装时注意版本。</p>
+<p><code>Superset</code>将数据库链接信息存储在它的元数据库上，使用<code>cryptography</code>加密链接密码，这个库是依赖于底层操作系统的，我的开发环境是基于<code>Ubuntu</code>的<code>Deepin</code>，执行如下命令安装库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install build-essential libssl-dev libffi-dev python-dev python-pip libsasl2-dev libldap2-dev</div></pre></td></tr></table></figure>
+<p>对OSX系统，执行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">brew install pkg-config libffi openssl python</div><div class="line">env LDFLAGS=<span class="string">"-L<span class="variable">$(brew --prefix openssl)</span>/lib"</span> CFLAGS=<span class="string">"-I<span class="variable">$(brew --prefix openssl)</span>/include"</span> pip install cryptography==1.9</div></pre></td></tr></table></figure>
+<p>对Windows系统，没有正式的官方支持，文档中介绍了使用pip安装的方法，不过个人建议开发还是不要用windows了，如果有win软件的依赖，可以试一下我现在使用的<code>deepin</code>深度linux系统，内置了<code>crossover</code>，不是特别复杂的exe软件都可以正常运行。</p>
+<p>官方文档建议我们为<code>superset</code>创建一个虚拟的运行环境，文档中使用的是<code>virtualenv</code>，这边我们使用更先进的<code>pipenv</code>（可见我博客中“新一代Python虚拟环境库Pipenv学习笔记”）:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mkdir supersetMy  	<span class="comment"># 创建文件夹</span></div><div class="line"><span class="built_in">cd</span> supersetMy  		<span class="comment"># 进入文件夹</span></div><div class="line">pipenv shell  		<span class="comment"># 使用pipenv创建虚拟环境并激活</span></div><div class="line">pipenv install superset	<span class="comment"># 安装superset</span></div></pre></td></tr></table></figure>
+<p>安装完成后我们首先要进行初始化，创建超级用户：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 创建管理员用户</span></div><div class="line">fabmanager create-admin --app superset</div><div class="line"><span class="comment"># 初始化数据库</span></div><div class="line">superset db upgrade</div><div class="line"><span class="comment"># 载入测试数据</span></div><div class="line">superset load_examples</div><div class="line"><span class="comment"># 创建默认角色与权限</span></div><div class="line">superset init</div><div class="line"><span class="comment"># 在本地8088端口创建服务，可以使用-p命令绑定其他端口</span></div><div class="line">superset runserver -d</div></pre></td></tr></table></figure>
+<p>初始化完成后，在浏览器打开<code>http://localhost:8088</code>，使用创建的管理员账号(henan@123.com/henan)登录，就是这么简单！</p>
+<p><img src="./superset-开源的BI及数据可视化工具开坑记/20180603091112.png" alt="20180603091112"></p>
+<p>正常使用按照上文配置即可，<a href="https://superset.incubator.apache.org/installation.html" target="_blank" rel="external">官方文档</a>还提供了一些具体的配置，如服务器配置、负载均衡配置、数据库参数配置、缓存配置等，在部署到生产环境时，可以参照文档细心配置一下提升用户使用手感，这里暂时跳过。</p>
+<h2 id="三、使用"><a href="#三、使用" class="headerlink" title="三、使用"></a>三、使用</h2><h3 id="3-1、创建数据库并探索数据"><a href="#3-1、创建数据库并探索数据" class="headerlink" title="3.1、创建数据库并探索数据"></a>3.1、创建数据库并探索数据</h3><p>登录后先单机右上角的小国旗，将语言改为中文，菜单栏会变成中文，方便使用。</p>
+<p>这部分的笔记参考了<a href="https://superset.incubator.apache.org/tutorial.html" target="_blank" rel="external">官方文档</a>教程并稍作修改，若有说的不清楚的地方可以翻阅文档查看详细内容。</p>
+<p>官方文档中创建了同mysql数据库的链接，我这里则通过导入csv文件的方式创建数据库，刚开始，csv文件是从windows机器下导出的，编码为ISO-8859，导入时会报utf8编码异常，于是想到要对编码进行转换，参考了<a href="https://linux.cn/article-7959-1.html" target="_blank" rel="external">这篇文章</a>中的方法，将csv转换为utf8：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看文件编码</span></div><div class="line">file -i train_data.csv</div><div class="line"></div><div class="line"><span class="comment"># 改变编码并保存</span></div><div class="line">iconv -f ISO-8859-1 -t UTF-8 train_data.csv -o train_data_utf8.csv</div></pre></td></tr></table></figure>
+<p>转换后又报了<code>&#39;NoneType&#39; object is not subscriptable</code>这个异常，排查了许久没有发现问题在哪，于是摘取了一小块数据(2MB)重新新建csv然后执行导入，结果确是网页直接崩溃了，报错：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">网址为 http://localhost:8088/csvtodatabaseview/form 的网页可能暂时无法连接，或者它已永久性地移动到了新网址。</div><div class="line">ERR_RESPONSE_HEADERS_TOO_BIG</div></pre></td></tr></table></figure>
+<p>WTF？查看<code>superset</code>的日志，提示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">UserWarning: The <span class="string">"b'session'"</span> cookie is too large: the value was 640742 bytes but the header required 26 extra bytes. The final size was 640768 bytes but the <span class="built_in">limit</span> is 4093 bytes. Browsers may silently ignore cookies larger than this.</div><div class="line">  samesite=samesite</div></pre></td></tr></table></figure>
+<p>cookies太大了？搜索了一番，然后我尝试前人的解决思路：既然cookie太大，那么我就不限制cookie的大小，修改配置文件即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 先进入python，找到库文件所在的路径</span></div><div class="line">python</div><div class="line">import sys</div><div class="line"><span class="built_in">print</span>(sys.path)</div><div class="line"></div><div class="line"><span class="comment"># 进入site-packages库所在路径</span></div><div class="line"><span class="built_in">cd</span> path/to/site-packages</div><div class="line"></div><div class="line"><span class="comment"># 修改werkzeug库下wrappers.py中max_cookie_size=0</span></div></pre></td></tr></table></figure>
+<p>测试一下，恩，果然没有效果，依然崩溃，无解之下，在<a href="https://github.com/apache/incubator-superset/issues/5072" target="_blank" rel="external">GitHub Issue</a>上有人问到过类似的问题，跟帖回复了我的问题，等待官方的解答。</p>
+<p>到这里我还是有点不死心，我的记录已经剪到了10000条，会不会是数据量太大的问题？于是我将数据再剪，剪到2000条，上传，成功了！然后在数据库里面看到了我之前所有尝试新建的表格：</p>
+<p><img src="/home/henan/hexoMy/henan715.github.io/source/_posts/superset-开源的BI及数据可视化工具开坑记/20180603110622.png" alt="20180603110622"></p>
+<p>WTF？？然而表格只有表结构没有数据，给跪！目前我提的问题还没有解决，所以说直接上传csv是不可行的了吗？TBC……</p>
+<h3 id="3-2、使用图表探查数据"><a href="#3-2、使用图表探查数据" class="headerlink" title="3.2、使用图表探查数据"></a>3.2、使用图表探查数据</h3><p>导入自己的csv不可行，那么就用内置的测试数据继续后面的学习吧。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="https://www.jianshu.com/p/a6fe79d0b1b3" target="_blank" rel="external">Superset搭建及简单使用</a></li>
+<li><a href="https://blog.csdn.net/qq273681448/article/details/75050513" target="_blank" rel="external">巧用Superset大数据分析平台搞定各种图表</a></li>
+<li><a href="https://github.com/apache/incubator-superset/issues" target="_blank" rel="external">Github Issues</a></li>
+<li>​</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/02/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/06/Anaconda安装、配置/" rel="prev" title="XGBoost安装手册">
+                XGBoost安装手册 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="FlyingFire" />
+            
+              <p class="site-author-name" itemprop="name">FlyingFire</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yourname@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、简介"><span class="nav-number">1.</span> <span class="nav-text">一、简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、安装"><span class="nav-number">2.</span> <span class="nav-text">二、安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、使用"><span class="nav-number">3.</span> <span class="nav-text">三、使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1、创建数据库并探索数据"><span class="nav-number">3.1.</span> <span class="nav-text">3.1、创建数据库并探索数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2、使用图表探查数据"><span class="nav-number">3.2.</span> <span class="nav-text">3.2、使用图表探查数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FlyingFire</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
