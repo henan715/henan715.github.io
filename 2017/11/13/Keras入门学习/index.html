@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="FlyingFire">
 <meta property="og:description" content="概述Keras是一个用Python编写的、高度封装的、支持Tensorflow、CNTK、Theano的神经网络库。 一、Keras模型“模型”是Keras的核心数据结构，有两种模型：最基础的是Sequential模型，他是网络顺序叠加形成的栈，另一种是使用函数式接口创建的更加复杂的模型。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-06T12:21:14.949Z">
+<meta property="og:updated_time" content="2018-06-30T06:42:52.233Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Keras入门学习">
 <meta name="twitter:description" content="概述Keras是一个用Python编写的、高度封装的、支持Tensorflow、CNTK、Theano的神经网络库。 一、Keras模型“模型”是Keras的核心数据结构，有两种模型：最基础的是Sequential模型，他是网络顺序叠加形成的栈，另一种是使用函数式接口创建的更加复杂的模型。">
@@ -378,7 +378,8 @@
 
       
         <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>Keras是一个用Python编写的、高度封装的、支持Tensorflow、CNTK、Theano的神经网络库。</p>
-<h1 id="一、Keras模型"><a href="#一、Keras模型" class="headerlink" title="一、Keras模型"></a>一、Keras模型</h1><p>“模型”是Keras的核心数据结构，有两种模型：最基础的是Sequential模型，他是网络顺序叠加形成的栈，另一种是使用函数式接口创建的更加复杂的模型。<br><a id="more"></a></p>
+<h1 id="一、Keras模型"><a href="#一、Keras模型" class="headerlink" title="一、Keras模型"></a>一、Keras模型</h1><p>“模型”是Keras的核心数据结构，有两种模型：最基础的是Sequential模型，他是网络顺序叠加形成的栈，另一种是使用函数式接口创建的更加复杂的模型。</p>
+<a id="more"></a>
 <h2 id="Sequential模型"><a href="#Sequential模型" class="headerlink" title="Sequential模型"></a>Sequential模型</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># sequential模型</span></div><div class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</div><div class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dense, Activation</div><div class="line"></div><div class="line"><span class="comment"># 创建模型</span></div><div class="line">model = Sequential()</div><div class="line"></div><div class="line"><span class="comment"># 添加网络层</span></div><div class="line">model.add(Dense(units=<span class="number">64</span>, input_dim=<span class="number">100</span>))</div><div class="line">model.add(Activation(<span class="string">'relu'</span>))</div><div class="line">model.add(Dense(units=<span class="number">10</span>))</div><div class="line">model.add(Activation(<span class="string">'softmax'</span>))</div><div class="line"></div><div class="line"><span class="comment"># 编译模型，编译模型时必须制定损失函数和优化函数</span></div><div class="line">model.compile(loss=<span class="string">'categorial_crossentropy'</span>, optimizer=<span class="string">'sgd'</span>, metrics=[<span class="string">'accuracy'</span>])</div><div class="line"><span class="comment"># keras模块化的设计原则可以灵活的设计网络结构，如：</span></div><div class="line"><span class="comment"># from keras.optimizers import SGD</span></div><div class="line"><span class="comment"># model.compile(loss='categorical_crossentropy', optimizer=SGD(lr=0.01, momentum=0.9, nesterov=True))</span></div><div class="line"></div><div class="line"><span class="comment"># 按批次训练网络</span></div><div class="line">model.fit(x_train, y_train, epochs=<span class="number">5</span>, batch_size=<span class="number">32</span>)</div><div class="line"><span class="comment"># 或者手动逐个批次的训练</span></div><div class="line"><span class="comment"># model.train_on_batch(x_batch, y_batch)</span></div><div class="line"></div><div class="line"><span class="comment"># 评估模型</span></div><div class="line">loss_and_metrics = model.evaluate(x_test, y_test, batch_size=<span class="number">128</span>)</div><div class="line"><span class="comment"># 或者预测新数据</span></div><div class="line">classes = model.predict(x_test, batch_size=<span class="number">128</span>)</div></pre></td></tr></table></figure>
 <h2 id="Functional模型"><a href="#Functional模型" class="headerlink" title="Functional模型"></a>Functional模型</h2><p>Keras函数式模型接口是用户定义多输出模型、非循环有向模型或具有共享层的模型等复杂模型的途径。函数式模型是最广泛的一类模型，序贯模型（Sequential）只是它的一种特殊情况。</p>
 <p><strong>全连接层模型</strong></p>
@@ -889,7 +890,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
